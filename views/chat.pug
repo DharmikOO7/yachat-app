@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  .chat
+    #sidebar.chat__sidebar
+      h1= title
+      //- p Welcome to #{title}
+    .chat__main
+      #messages.chat__messages
+      .compose
+        form#message-form
+          input(name='message' required placeholder='Type a message' autocomplete='off')
+          button Send
+  script#message-template(type='text/html').
+    <div class="message">
+    <p>
+    <span class="message__name">{{username}}</span>
+    <span class="message__meta">{{createdAt}}</span>
+    </p>
+    <p>{{message}}</p>
+    </div>
+  script#usersList(type='text/html').
+    <h1 class="room-title">{{room}}</h1>
+    <h3 class="list-title">Users({{noOfUsers}})</h3>
+    <ul class="users">
+        {{#users}}
+        <li>{{username}}</li>
+        {{/users}}
+    </ul>
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js' integrity='sha256-MPgtcamIpCPKRRm1ppJHkvtNBAuE71xcOM+MmQytXi8=' crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js' integrity='sha256-5oApc/wMda1ntIEK4qoWJ4YItnV4fBHMwywunj8gPqc=' crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js' integrity='sha256-ijqLssetA1NMNjZ+w1zaUafQQLm4IW5OoM8O+4tatME=' crossorigin='anonymous')
+  script(src="/socket.io/socket.io.js")
+  script(src="./javascripts/chat.js")
+    

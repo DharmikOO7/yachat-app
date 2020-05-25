@@ -4,7 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../src/app');
+let socketAPI = require('../src/socket');
 var debug = require('debug')('yachat-app:server');
 var http = require('http');
 
@@ -20,7 +21,8 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+//Attach server to socket.io module
+socketAPI.io.attach(server);
 /**
  * Listen on provided port, on all network interfaces.
  */

@@ -1,5 +1,19 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .centered-form
+    .centered-form__box
+      //- h1 Join
+      h1= title
+      form(action='/chat')
+        label User name
+        input(type='text' name='username' placeholder='User name' required='')
+        label Room
+        input(type='text' name='room' placeholder='Room' required='')
+        button Join
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js' integrity='sha256-MPgtcamIpCPKRRm1ppJHkvtNBAuE71xcOM+MmQytXi8=' crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js' integrity='sha256-5oApc/wMda1ntIEK4qoWJ4YItnV4fBHMwywunj8gPqc=' crossorigin='anonymous')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js' integrity='sha256-ijqLssetA1NMNjZ+w1zaUafQQLm4IW5OoM8O+4tatME=' crossorigin='anonymous')
+  script(src="/socket.io/socket.io.js")
+  script(src="./javascripts/chat.js")
+    
